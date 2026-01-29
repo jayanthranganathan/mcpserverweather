@@ -1,4 +1,4 @@
-# MCP Demo - .NET Weather Service
+# MCP Server Weather - .NET Weather Service
 
 A .NET 10.0 Model Context Protocol (MCP) server demonstration project that provides weather information and utilities.
 
