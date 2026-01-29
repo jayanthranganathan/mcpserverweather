@@ -16,14 +16,14 @@ namespace mcpdemo.Services
         public async Task<WeatherRequest> GetWeatherByCityAsync(string city)
         {
             // Consuming a public API for demonstration
-            var weatherInfo = await _httpClient.GetFromJsonAsync<WeatherRequest>($"https://api.weatherstack.com/current?access_key=a85b886d75aa6001e3628775ed0182a8&query={city}");
+            var weatherInfo = await _httpClient.GetFromJsonAsync<WeatherRequest>($"https://api.weatherstack.com/current?access_key={YOUR_API_KEY}&query={city}");
             return weatherInfo ?? new WeatherRequest();
         }
 
         public async Task<WeatherRequest> GetWeatherForecastByCityAsync(string city, int days, int hourlyInterval)
         {
             // Consuming a public API for demonstration
-            var weatherInfo = await _httpClient.GetFromJsonAsync<WeatherRequest>($"https://api.weatherstack.com/forecast?access_key=a85b886d75aa6001e3628775ed0182a8&query={city}&forecast_days={days}&hourly={hourlyInterval}");
+            var weatherInfo = await _httpClient.GetFromJsonAsync<WeatherRequest>($"https://api.weatherstack.com/forecast?access_key={YOUR_API_KEY}&query={city}&forecast_days={days}&hourly={hourlyInterval}");
             return weatherInfo ?? new WeatherRequest();
         }
     }
