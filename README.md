@@ -1,137 +1,86 @@
-# mcpserver
-A practical, step-by-step exploration of building a Model Context Protocol (MCP) server using C# and ASP.NET Core, focused on real-world, production-ready AI integrations.
+# MCP Demo - .NET Weather Service
 
-## 📌 Why We Need This
+A .NET 10.0 Model Context Protocol (MCP) server demonstration project that provides weather information and utilities.
 
-Early AI systems were built around a simple interaction model. But now AI systems are moving beyond simple prompt → response flows.
+## Overview
 
-This works well for:
+**mcpdemo** is a .NET-based MCP server that integrates with the weatherstack API to deliver real-time weather data. The project showcases how to build an MCP-compatible service with dependency injection, hosting, and JSON serialization.
 
-* Q&A
+## Features
 
-* Content generation
+- **Weather API Integration**: Fetches current weather and forecast data from weatherstack
+- **MCP Server**: Implements the Model Context Protocol for seamless integration
+- **Strongly Typed Models**: Comprehensive C# models matching weather API responses
+- **Built with .NET 10**: Latest .NET framework for performance and modern language features
 
-* Simple assistants
+## Project Structure
+```text
+mcpdemo/
+├── Models/
+│   ├── WeatherRequest.cs    # Main weather data model
+│   ├── Location.cs          # Location details
+│   ├── Current.cs           # Current weather details
+│   ├── Historical.cs        # Historical weather data
+│   └── Hourly.cs            # Hourly forecast data
+├── Services/
+│   └── WeatherService.cs    # Weather API integration logic
+├── Program.cs               # Application entry point and DI configuration
+└── mcpdemo.csproj           # Project dependencies and configuration
+```
 
-However, modern AI systems are expected to act, not just respond. They need to
+## Dependencies
 
-  * Fetch data
+- **ModelContextProtocol** (0.6.0-preview.1) - MCP framework
+- **Microsoft.Extensions.Hosting** (10.0.2) - Host builder and DI
+- **System.Text.Json** (10.0.2) - JSON serialization
+- **Microsoft.Extensions.AI.Abstractions** (10.1.1) - AI abstractions
 
-  * Update records
+## Getting Started
 
-  * Call internal services
+### Prerequisites
+- .NET 10.0 SDK or later
+- Visual Studio Code or Visual Studio 2022+
 
-  * Coordinate multi-step workflows
+### Installation
 
-This shift introduces a new requirement structured interaction with real systems.
+1. Navigate to the project directory:
+```bash
+cd mcpdemo/mcpdemo
+```
 
-## 🤖 Why Autonomous AI Needs More
+2. Restore packages:
+```bash
+dotnet restore
+```
+3. Build the project:
+```bash
+dotnet build
+```
+4. Run the application:
+```bash
+dotnet run
+```
 
-As AI tools become more autonomous, they can no longer rely on:
+## Configuration
+The MCP server is configured in mcp.json:
 
-  * Hardcoded endpoints
+**Type:** stdio
+**Command:** dotnet run
+**Project:** mcpdemo.csproj
 
-  * Prompt-level guessing
+## API Integration
+The WeatherService uses the weatherstack API for weather data:
 
-  * Loosely defined payloads
+**Base URL:** https://api.weatherstack.com/
 
-Instead, they need:
+**Endpoints:**
 
-**🔹 Discoverable Capabilities**
+/current - Current weather
 
-AI tools must be able to ask the system what it can do.
+/forecast - Weather forecast
 
-Examples:
+**Usage**
+Query weather data through the MCP interface for specific cities and forecast periods.
 
-  * “What operations are available?”
-
-  * “What inputs does this tool expect?”
-
-  * “What will the output look like?”
-
-This removes tight coupling and enables dynamic behavior.
-
-**🔹 Strongly Defined Schemas**
-
-Autonomous systems require predictable contracts.
-
-Schemas provide:
-
-  * Input validation
-
-  * Clear boundaries
-
-  * Reduced hallucination risk
-
-Safer execution paths
-
-For .NET systems, this maps naturally to:
-
-  * Strong typing
-
-  * Validation pipelines
-
-  * Explicit models
-
-**🔹 Secure, Structured Tool Execution**
-
-When AI can trigger real actions, safety becomes critical.
-
-Production systems must enforce:
-
-  * Authentication & authorization
-
-  * Input constraints
-
-  * Rate limits
-
-  * Auditing and traceability
-
-Free-form API calls are too risky for autonomous execution.
-
-## ❌ Why REST APIs Alone Fall Short
-
-REST APIs were designed for human-driven applications, not autonomous agents.
-
-Challenges:
-
-  * Endpoints are not discoverable
-
-  * Semantics are implicit, not explicit
-
-  * Payloads are loosely enforced
-
-  * Security is often application-level, not capability-level
-
-This leads to fragile integrations and complex glue code.
-
-## ✅ How MCP Addresses This
-
-Model Context Protocol (MCP) introduces a capability-based interaction model.
-
-AI Tool → MCP Server → Discoverable Tools → Business Logic
-
-
-**MCP enables:**
-
-  * Dynamic tool discovery
-
-  * Schema-driven execution
-
-  * Clear separation between interface and implementation
-
-  * Safer, more maintainable AI integrations
-
-This repository explores how MCP (Model Context Protocol) enables AI tools to interact with real systems in a more structured, composable, and scalable way — using the .NET ecosystem.
-
-## 🧠 What is MCP (Model Context Protocol)?
-
-MCP allows AI tools and agents to:
-
-  * Discover available tools dynamically
-
-  * Understand tool input/output schemas
-
-  * Execute actions in a controlled, predictable manner
-
-Instead of exposing raw endpoints, MCP exposes capabilities.
+**Author**
+Jayanth Ranganathan
