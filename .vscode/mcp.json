@@ -1,0 +1,14 @@
+{
+	"servers": {
+		"mcp-demo": {
+			"type": "stdio",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"--project",
+				"/Users/jayanthranganathan/Projects/GitHub/DotNET/mcpdemo/mcpdemo/mcpdemo.csproj"
+			]
+		}
+	},
+	"inputs": []
+}
